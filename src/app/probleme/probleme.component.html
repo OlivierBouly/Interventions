@@ -1,1 +1,30 @@
-<p>probleme works!</p>
+<br/>
+<div class="container">
+    <div class="card">
+        <div class="card-text">
+            <form class="form-horizontal"
+                novalidate
+                (ngSubmit)="save()"
+                [formGroup]="prenom">
+                <!-- Zone de texte PRENOM -->
+                <div class="form-group row">          
+                    <label for="prenomId" class="col-md-2 col-form-label">Prénom :</label>
+                    <div class="col-md-10">
+                        <input class="form-control" 
+                        id="prenomId" 
+                        type="text" 
+                        placeholder="Votre prénom ici (obligatoire)" 
+                        formControlName="prenomUsager"            
+                        [ngClass]="{'is-valid': (prenom.get('prenomUsager').touched || 
+                        prenom.get('prenomUsager').dirty) &&
+                        prenom.get('prenomUsager').valid,
+                        'is-invalid': (prenom.get('prenomUsager').touched || 
+                        prenom.get('prenomUsager').dirty) &&
+                        !prenom.get('prenomUsager').valid}"
+                        />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

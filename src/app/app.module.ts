@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BienvenueComponent } from './bienvenue/bienvenue.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ProblemeComponent } from './probleme/probleme.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProblemeComponent } from './probleme/probleme.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path:'accueil', component:AccueilComponent},
       { path:'probleme', component:ProblemeComponent}
