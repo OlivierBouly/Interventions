@@ -23,6 +23,25 @@
                         !prenom.get('prenomUsager').valid}"
                         />
                     </div>
+                    <span class="form-text" *ngIf="(prenom.get('prenomUsager').touched ||
+                        prenom.get('prenomUsager').dirty) &&
+                        (prenom.get('prenomUsager').errors)">
+                        <span *ngIf=" prenom.get('prenomUsager').errors['required']">
+                            <small class="text-muted">
+                                Merci de saisir votre prénom.
+                            </small>
+                        </span>
+                        <span *ngIf=" prenom.get('prenomUsager').errors['minlength']">
+                            <small class="text-muted">
+                                Veuillez saisir plus de characteres
+                            </small>
+                        </span>
+                        <span *ngIf=" prenom.get('prenomUsager').errors['maxlength']">
+                            <small class="text-muted">
+                                Veuillez saisir moins de characteres
+                            </small>
+                        </span>
+                    </span>     
                 </div>
             </form>
         </div>
