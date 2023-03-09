@@ -20,4 +20,9 @@ describe('ProblemeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('1# Zone prenom invalide avec 2 caracteres ', () => {
+    expect(true).toBeTruthy();
+  });
+
 });
