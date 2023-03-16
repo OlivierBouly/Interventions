@@ -38,14 +38,14 @@ describe('Zones Validator', () => {
     });
     // debut test demander dans ennoncer
 
-    it('une chaine avec 10 espaces est invalide', () =>{
+    it('7# une chaine avec 10 espaces est invalide', () =>{
         let validator = ZonesValidator.plage(3);
         let control = {value: "          "};
         let result = validator(control as AbstractControl);
         expect(result['nbreCharsInsuffisants']).toBe(true);
     });
     
-    it('une phrase avec des mots est valide', () =>{
+    it('8# une phrase avec des mots est valide', () =>{
         let validator = ZonesValidator.plage(3);
         let control = {value: "Vive angular"};
         let result = validator(control as AbstractControl);
