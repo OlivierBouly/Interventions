@@ -60,7 +60,7 @@ describe('ProblemeComponent', () => {
     let zone = component.prenom.controls['prenomUsager'];
     zone.setValue(' '.repeat(10));
     errors = zone.errors || {};
-    expect(zone.valid).toBeTruthy();
+    expect(zone.valid).toBeFalsy();
   });
 
   it("#6 | Zone PRÉNOM valide avec 2 espaces et 1 caractère", () => {
@@ -68,7 +68,7 @@ describe('ProblemeComponent', () => {
     let zone = component.prenom.controls['prenomUsager'];
     zone.setValue('  a');
     errors = zone.errors || {};
-    expect(zone.valid).toBeTruthy();
+    expect(zone.valid).toBeFalsy();
   });
 
 });

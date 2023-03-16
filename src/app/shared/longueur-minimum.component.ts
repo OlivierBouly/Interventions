@@ -1,12 +1,12 @@
 import { AbstractControl, ValidatorFn } from "@angular/forms";
 
 export class ZonesValidator {
-    static plage(): ValidatorFn {
+    static plage(valeurMinimum: number): ValidatorFn {
         return (c: AbstractControl): { [key: string]: boolean} | null => {
-            if(c.value.replace(' ','').length >= 3) {
+            if(c.value.replaceAll(' ','').length >= valeurMinimum) {
                 return null;
             }
-            return {'plageInvalide': true};
+            return {'nbreCharsInsuffisants': true};
         };
     }
 }
