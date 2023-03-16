@@ -25,7 +25,7 @@ describe('ProblemeComponent', () => {
 
   it("#1 | Zone PRÉNOM invalide avec 2 caractères", () => {
     let errors = {};
-    let zone = component.prenom.controls['prenomUsager'];
+    let zone = component.problemForm.controls['prenomUsager'];
     zone.setValue('a'.repeat(2));
     errors = zone.errors || {};
     expect(zone.valid).toBeFalsy();
@@ -33,7 +33,7 @@ describe('ProblemeComponent', () => {
 
   it("#2 | Zone PRÉNOM valide avec 3 caractères", () => {
     let errors = {};
-    let zone = component.prenom.controls['prenomUsager'];
+    let zone = component.problemForm.controls['prenomUsager'];
     zone.setValue('a'.repeat(3));
     errors = zone.errors || {};
     expect(zone.valid).toBeTruthy();
@@ -41,7 +41,7 @@ describe('ProblemeComponent', () => {
 
   it("#3 | Zone PRÉNOM valide avec 200 caractères", () => {
     let errors = {};
-    let zone = component.prenom.controls['prenomUsager'];
+    let zone = component.problemForm.controls['prenomUsager'];
     zone.setValue('a'.repeat(200));
     errors = zone.errors || {};
     expect(zone.valid).toBeTruthy();
@@ -49,7 +49,7 @@ describe('ProblemeComponent', () => {
 
   it("#4 | Zone PRÉNOM invalide avec aucune valeur", () => {
     let errors = {};
-    let zone = component.prenom.controls['prenomUsager'];
+    let zone = component.problemForm.controls['prenomUsager'];
     zone.setValue('');
     errors = zone.errors || {};
     expect(zone.valid).toBeFalsy();
@@ -57,7 +57,7 @@ describe('ProblemeComponent', () => {
 
   it("#5 | Zone PRÉNOM valide avec 10 espaces", () => {
     let errors = {};
-    let zone = component.prenom.controls['prenomUsager'];
+    let zone = component.problemForm.controls['prenomUsager'];
     zone.setValue(' '.repeat(10));
     errors = zone.errors || {};
     expect(zone.valid).toBeFalsy();
@@ -65,7 +65,7 @@ describe('ProblemeComponent', () => {
 
   it("#6 | Zone PRÉNOM valide avec 2 espaces et 1 caractère", () => {
     let errors = {};
-    let zone = component.prenom.controls['prenomUsager'];
+    let zone = component.problemForm.controls['prenomUsager'];
     zone.setValue('  a');
     errors = zone.errors || {};
     expect(zone.valid).toBeFalsy();

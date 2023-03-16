@@ -9,12 +9,12 @@ import { ZonesValidator } from '../shared/longueur-minimum.component';
 })
 export class ProblemeComponent implements OnInit{
 
-  prenom: FormGroup;
+  problemForm: FormGroup;
   constructor(private fb: FormBuilder) { }
   
   ngOnInit() {
-    this.prenom = this.fb.group({
-      prenomUsager: ['', [ZonesValidator.plage(3), Validators.maxLength(200), Validators.required]]
+    this.problemForm = this.fb.group({
+      prenom: ['', [ZonesValidator.minLength(3), Validators.maxLength(200), Validators.required]]
     });
   }
 

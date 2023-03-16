@@ -5,7 +5,7 @@
             <form class="form-horizontal"
                 novalidate
                 (ngSubmit)="save()"
-                [formGroup]="prenom">
+                [formGroup]="problemForm">
                 <!-- Zone de texte PRENOM -->
                 <div class="form-group row">          
                     <label for="prenomId" class="col-md-2 col-form-label">Prénom :</label>
@@ -14,34 +14,34 @@
                         id="prenomId" 
                         type="text" 
                         placeholder="Votre prénom ici (obligatoire)" 
-                        formControlName="prenomUsager"            
-                        [ngClass]="{'is-valid': (prenom.get('prenomUsager').touched || 
-                        prenom.get('prenomUsager').dirty) &&
-                        prenom.get('prenomUsager').valid,
-                        'is-invalid': (prenom.get('prenomUsager').touched || 
-                        prenom.get('prenomUsager').dirty) &&
-                        !prenom.get('prenomUsager').valid}"
+                        formControlName="prenom"            
+                        [ngClass]="{'is-valid': (problemForm.get('prenom').touched || 
+                        problemForm.get('prenom').dirty) &&
+                        problemForm.get('prenom').valid,
+                        'is-invalid': (problemForm.get('prenom').touched || 
+                        problemForm.get('prenom').dirty) &&
+                        !problemForm.get('prenom').valid}"
                         />
                     </div>
-                    <span class="form-text" *ngIf="(prenom.get('prenomUsager').touched ||
-                        prenom.get('prenomUsager').dirty) &&
-                        (prenom.get('prenomUsager').errors)">
-                        <span *ngIf=" prenom.get('prenomUsager').errors['required']">
+                    <span class="form-text" *ngIf="(problemForm.get('prenom').touched ||
+                    problemForm.get('prenom').dirty) &&
+                        (problemForm.get('prenom').errors)">
+                        <span *ngIf=" problemForm.get('prenom').errors['required']">
                             <small class="text-muted">
                                 Merci de saisir votre prénom.
                             </small>
                         </span>
-                        <span *ngIf=" prenom.get('prenomUsager').errors['minlength']">
+                        <span *ngIf=" problemForm.get('prenom').errors['nbreCharsInsuffisants']">
                             <small class="text-muted">
                                 Veuillez saisir plus de characteres
                             </small>
                         </span>
-                        <span *ngIf=" prenom.get('prenomUsager').errors['maxlength']">
+                        <span *ngIf=" problemForm.get('prenom').errors['maxlength']">
                             <small class="text-muted">
                                 Veuillez saisir moins de characteres
                             </small>
                         </span>
-                    </span>     
+                    </span>   
                 </div>
             </form>
         </div>
