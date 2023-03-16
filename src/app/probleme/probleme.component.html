@@ -43,6 +43,68 @@
                         </span>
                     </span>   
                 </div>
+                <!-- Zone de texte NOM -->
+                <div class="form-group row">          
+                    <label for="nomId" class="col-md-2 col-form-label">Nom :</label>
+                    <div class="col-md-10">
+                        <input class="form-control" 
+                        id="nomId" 
+                        type="text" 
+                        placeholder="Votre nom ici (obligatoire)" 
+                        formControlName="nom"            
+                        [ngClass]="{'is-valid': (problemForm.get('nom').touched || 
+                        problemForm.get('nom').dirty) &&
+                        problemForm.get('nom').valid,
+                        'is-invalid': (problemForm.get('nom').touched || 
+                        problemForm.get('nom').dirty) &&
+                        !problemForm.get('nom').valid}"
+                        />
+                    </div>
+                    <span class="form-text" *ngIf="(problemForm.get('nom').touched ||
+                    problemForm.get('nom').dirty) &&
+                        (problemForm.get('nom').errors)">
+                        <span *ngIf=" problemForm.get('nom').errors['required']">
+                            <small class="text-muted">
+                                Merci de saisir votre nom de famille.
+                            </small>
+                        </span>
+                        <span *ngIf=" problemForm.get('nom').errors['nbreCharsInsuffisants']">
+                            <small class="text-muted">
+                                Veuillez saisir plus de characteres
+                            </small>
+                        </span>
+                        <span *ngIf=" problemForm.get('nom').errors['maxlength']">
+                            <small class="text-muted">
+                                Veuillez saisir moins de characteres
+                            </small>
+                        </span>
+                    </span>   
+                </div>
+                <!-- Zone choix de probleme -->
+                <div class="form-group row">
+                    <label for="typeProblemeId" class="col-md-2 col -form-label text right">Probleme :</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="typeProblemeId" formControlName="typeProbleme"
+                        [ngClass]="{'is-valid': (problemForm.get('typeProbleme').touched || 
+                        problemForm.get('typeProbleme').dirty) &&
+                        problemForm.get('typeProbleme').valid,
+                        'is-invalid': (problemForm.get('typeProbleme').touched || 
+                        problemForm.get('typeProbleme').dirty) &&
+                        !problemForm.get('typeProbleme').valid}">
+                            <option value="">Selectionner une categorie de produit</option>
+                            <option *ngFor="let problem of typesProbleme" [value]="problem.id">{{problem.descriptionTypeProbleme}}</option>
+                        </select>
+                    </div>
+                    <span class="form-text" *ngIf="(problemForm.get('typeProbleme').touched ||
+                    problemForm.get('typeProbleme').dirty) &&
+                        (problemForm.get('typeProbleme').errors)">
+                        <span *ngIf=" problemForm.get('typeProbleme').errors['required']">
+                            <small class="text-muted">
+                                Merci de saisir un type de probleme.
+                            </small>
+                        </span>
+                    </span>   
+                </div>
             </form>
         </div>
     </div>
