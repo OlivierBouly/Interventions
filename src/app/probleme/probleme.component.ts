@@ -20,8 +20,13 @@ export class ProblemeComponent implements OnInit{
   ngOnInit() {
     this.problemForm = this.fb.group({
       prenom: ['', [ZonesValidator.minLength(3), Validators.maxLength(200), Validators.required]],
-      nom: ['', [ZonesValidator.minLength(3), Validators.maxLength(50), Validators.required]],
-      typeProbleme: ['', Validators.required]
+      nom: ['', [ZonesValidator.minLength(3), Validators.maxLength(200), Validators.required]],
+      typeProbleme: ['', Validators.required], 
+      courrielGroup: this.fb.group({
+          courriel: [{value: '', disabled: true}],
+          courrielConfirmation: [{value: '', disabled: true}]
+        }),
+      telephone: [{value: '', disabled: true}]
     });
 
     this.typeproblemeService.obtenirTypesProbleme()
@@ -32,6 +37,48 @@ export class ProblemeComponent implements OnInit{
   }
 
   save(): void {
+  }
+  appliquerNotifications(notification: string): void {
+    const courrielControl = this.problemForm.get('courrielGroup.courriel');
+    const courrielConfirmationControl = this.problemForm.get('courrielGroup.courrielConfirmation');   
+    const courrielGroupControl = this.problemForm.get('courrielGroup');
+    const telephoneControl = this.problemForm.get('telephone');
+
+    courrielControl.clearValidators();
+    courrielControl.reset();
+    courrielControl.disable();  
+
+    courrielConfirmationControl.clearValidators();
+    courrielConfirmationControl.reset();    
+    courrielConfirmationControl.disable();
+
+    telephoneControl.clearValidators();
+    telephoneControl.reset();
+    telephoneControl.disable();
+
+    if (notification === 'Me notifier') {   
+            courrielControl.setValidators([Validators.required]);      
+            courrielControl.enable();  
+            courrielConfirmationControl.setValidators([Validators.required]);              
+            courrielConfirmationControl.enable();  
+            telephoneControl.setValidators([Validators.required]);
+            telephoneControl.enable()                   
+      }   
+      else
+      {
+        if(notification === 'Ne pas me notifier')
+        {
+          courrielControl.clearValidators;      
+          courrielControl.disable();   
+          courrielConfirmationControl.clearValidators;
+          courrielConfirmationControl.disable();
+          telephoneControl.clearValidators();
+          telephoneControl.disable();
+        }
+      }
+    courrielControl.updateValueAndValidity();   
+    courrielConfirmationControl.updateValueAndValidity();
+    telephoneControl.updateValueAndValidity();         
   }
 
 }
