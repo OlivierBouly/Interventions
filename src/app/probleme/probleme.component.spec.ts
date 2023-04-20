@@ -188,4 +188,17 @@ describe('ProblemeComponent', () => {
 
     expect(group.valid).toBeFalse();
   })
+
+  it('#28 | Zones ADRESSE COURRIEL et CONFIRMER COURRIEL sont valides si les valeurs sont identiques quand notifier par courriel', () => {
+    component.appliquerNotifications('notifierCourriel');
+
+    let zone = component.problemForm.get('courrielGroup.courriel');
+    let zone01 = component.problemForm.get('courrielGroup.courrielConfirmation');
+    let group = component.problemForm.get("courrielGroup")
+
+    zone.setValue("abc@default.com");
+    zone01.setValue("asaw");
+
+    expect(group.valid).toBeFalse();
+  })
 });
