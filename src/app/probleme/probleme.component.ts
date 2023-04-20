@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ZonesValidator } from '../shared/longueur-minimum.component';
 import { ProblemeService } from './probleme.service';
 import { ITypeProbleme } from './typeproblem';
+import { emailMatcherValidator } from '../shared/email-matcher.component';
 
 @Component({
   selector: 'inter-probleme',
@@ -26,7 +27,7 @@ export class ProblemeComponent implements OnInit{
           courriel: [{value: '', disabled: true}, [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]],
           courrielConfirmation: [{value: '', disabled: true}, [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]]
         }),
-      telephone: [{value: '', disabled: true}]
+      telephone: [{value: '', disabled: true}, [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]]
     });
 
     this.typeproblemeService.obtenirTypesProbleme()
@@ -61,6 +62,7 @@ export class ProblemeComponent implements OnInit{
             courrielControl.enable();  
             courrielConfirmationControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);              
             courrielConfirmationControl.enable();
+            courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])])
             telephoneControl.disable();
             telephoneControl.clearValidators();         
       }   
@@ -71,7 +73,7 @@ export class ProblemeComponent implements OnInit{
           courrielControl.clearValidators();        
           courrielConfirmationControl.disable();
           courrielConfirmationControl.clearValidators();
-          telephoneControl.setValidators([Validators.required]);
+          telephoneControl.setValidators([Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]);
           telephoneControl.enable();                  
     }   
     else{
