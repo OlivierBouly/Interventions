@@ -75,7 +75,7 @@ export class ProblemeComponent implements OnInit{
           courrielConfirmationControl.clearValidators();
           telephoneControl.setValidators([Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]);
           telephoneControl.enable();                  
-    }   
+        } 
     else{
       if(notification === 'pasNotifier')
       {
@@ -85,6 +85,21 @@ export class ProblemeComponent implements OnInit{
         courrielConfirmationControl.disable();
         telephoneControl.clearValidators();
         telephoneControl.disable();
+      }
+      else {
+          if(notification === 'inconnu'){
+              courrielControl.clearValidators();
+              courrielControl.reset();
+              courrielControl.disable();
+              
+              courrielConfirmationControl.clearValidators();
+              courrielConfirmationControl.reset();    
+              courrielConfirmationControl.disable();
+
+              telephoneControl.clearValidators();
+              telephoneControl.reset();
+              telephoneControl.disable();
+          }
       }
     }
   }

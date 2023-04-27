@@ -262,4 +262,18 @@ describe('ProblemeComponent', () => {
     zone.setValue("1234567891");
     expect(zone.valid).toBeTrue(); 
   })
+
+  it('Test de couverage | Si notifier est egale a inconnu, ont disable les champs', () => {
+
+    component.appliquerNotifications('inconnu')
+
+    let zone = component.problemForm.get('courrielGroup.courriel')
+    let zone1 = component.problemForm.get('courrielGroup.courrielConfirmation')
+    let zone2 = component.problemForm.get('telephone')
+
+    expect(zone.status).toEqual('DISABLED')
+    expect(zone1.status).toEqual('DISABLED')
+    expect(zone2.status).toEqual('DISABLED')
+
+  })
 });
