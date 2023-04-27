@@ -28,7 +28,10 @@ export class ProblemeComponent implements OnInit{
           courriel: [{value: '', disabled: true}, [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]],
           courrielConfirmation: [{value: '', disabled: true}, [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]]
         }),
-      telephone: [{value: '', disabled: true}, [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]]
+      telephone: [{value: '', disabled: true}, [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]],
+      descriptionProbleme: ["", [Validators.required, Validators.minLength(5)]],
+      noUnite: "",
+      dateProbleme: {value: Date(), disabled: true}
     });
 
     this.typeproblemeService.obtenirTypesProbleme()
