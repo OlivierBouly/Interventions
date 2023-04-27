@@ -33,6 +33,9 @@ export class ProblemeComponent implements OnInit{
     this.typeproblemeService.obtenirTypesProbleme()
     .subscribe(typesProbleme => this.typesProbleme = typesProbleme,
                error => this.errorMessage = <any>error);  
+      
+      this.problemForm.get('notification').valueChanges
+      .subscribe(value => this.appliquerNotifications(value));
 
 
   }
