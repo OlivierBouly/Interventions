@@ -28,7 +28,7 @@ import { ProblemeData } from './probleme/typeproblem-data';
       { path:'probleme', component:ProblemeComponent}
     ]),
     HttpClientModule,
-    HttpClientInMemoryWebApiModule .forRoot(ProblemeData, { delay: 1000 })
+    //HttpClientInMemoryWebApiModule .forRoot(ProblemeData, { delay: 1000 })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,9 @@ import { ZonesValidator } from '../shared/longueur-minimum.component';
 import { ProblemeService } from './probleme.service';
 import { ITypeProbleme } from './typeproblem';
 import { emailMatcherValidator } from '../shared/email-matcher.component';
+import { ProblemeDescService } from './problemedesc.service';
+import { IProbleme } from './probleme';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'inter-probleme',
@@ -14,9 +17,10 @@ export class ProblemeComponent implements OnInit{
 
   problemForm: FormGroup;
   typesProbleme: ITypeProbleme[];
+  probleme: IProbleme;
   errorMessage: string;
 
-  constructor(private fb: FormBuilder, private typeproblemeService: ProblemeService) { }
+  constructor(private fb: FormBuilder, private typeproblemeService: ProblemeService, private prob: ProblemeDescService, private route: Router) { }
   
   ngOnInit() {
     this.problemForm = this.fb.group({
@@ -44,8 +48,6 @@ export class ProblemeComponent implements OnInit{
 
   }
 
-  save(): void {
-  }
   appliquerNotifications(notification: string): void {
     const courrielControl = this.problemForm.get('courrielGroup.courriel');
     const courrielConfirmationControl = this.problemForm.get('courrielGroup.courrielConfirmation');   
@@ -114,6 +116,35 @@ export class ProblemeComponent implements OnInit{
     courrielConfirmationControl.updateValueAndValidity();
     courrielGroupControl.updateValueAndValidity();
     telephoneControl.updateValueAndValidity();         
+  }
+
+  save(): void {
+    if (this.problemForm.dirty && this.problemForm.valid) {
+        // Copy the form values over the problem object values
+        this.probleme = this.problemForm.value;
+        this.probleme.Id = 0;
+        // Courriel est dans un groupe alors que this.probleme n'a pas de groupe.  Il faut le transférer explicitement.
+         if(this.problemForm.get('courrielGroup.courriel').value != '')
+        {
+          this.probleme.courriel = this.problemForm.get('courrielGroup.courriel').value;
+        }
+
+        this.probleme.noTypeProbleme = parseInt(this.problemForm.get('typeProbleme').value);
+    
+        this.prob.saveProbleme(this.probleme)
+            .subscribe({
+              next: () => this.onSaveComplete(),
+              error: err => this.errorMessage = err
+          })
+    } else if (!this.problemForm.dirty) {
+        this.onSaveComplete();
+    }
+  }
+  
+  onSaveComplete(): void {
+    // Reset the form to clear the flags
+    this.problemForm.reset();  // Pour remettre Dirty à false.  Autrement le Route Guard va dire que le formulaire n'est pas sauvegardé
+    this.route.navigate(['/accueil']);
   }
 
 }

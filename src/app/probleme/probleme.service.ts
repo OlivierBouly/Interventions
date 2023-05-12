@@ -10,7 +10,8 @@ export class ProblemeService {
 
   constructor(private http: HttpClient) { }
   
-  private baseUrl = 'api/typesprobleme';
+  //private baseUrl = 'api/typesprobleme';
+  private baseUrl = 'https://localhost:7115/v1/probleme';  
 
   obtenirTypesProbleme(): Observable<ITypeProbleme[]> {
     return this.http.get<ITypeProbleme[]>(this.baseUrl).pipe(
